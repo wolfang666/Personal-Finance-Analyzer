@@ -78,18 +78,69 @@ Key highlights:
 
 ```
 Personal-Finance-Analyzer/
-├── app.py
-├── api/
-│   └── backend_client.py
-├── components/
-│   ├── charts.py
-│   ├── insights.py
-│   └── corrections.py
-├── config.py
-├── requirements.txt
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── analytics.py        # Summary & trend APIs
+│   │   │   ├── corrections.py      # Human-in-the-loop categorization
+│   │   │   ├── insights.py         # LLM-generated insights endpoints
+│   │   │   ├── merchants.py        # Merchant management APIs
+│   │   │   └── upload.py           # GPay PDF upload & parsing
+│   │   │
+│   │   ├── core/
+│   │   │   ├── analytics/
+│   │   │   │   └── summary.py      # Monthly & category-level aggregation
+│   │   │   │
+│   │   │   ├── categorisation/
+│   │   │   │   ├── categorizer.py  # Merchant categorization logic
+│   │   │   │   ├── cosine.py       # Cosine similarity utilities
+│   │   │   │   └── vectorizer.py   # TF-IDF vectorization
+│   │   │   │
+│   │   │   ├── db/
+│   │   │   │   ├── sqlite.py       # SQLite connection & setup
+│   │   │   │   ├── queries.py      # SQL query definitions
+│   │   │   │   └── merchant_memory.py # Persistent merchant memory
+│   │   │   │
+│   │   │   ├── ingestion/
+│   │   │   │   ├── gpay.py         # GPay PDF parsing (Camelot-based)
+│   │   │   │   └── pipeline.py     # End-to-end ingestion pipeline
+│   │   │   │
+│   │   │   ├── llm/
+│   │   │   │   ├── loader.py       # Local LLM loader (llama.cpp)
+│   │   │   │   └── insights.py     # Prompting & insight generation
+│   │   │   │
+│   │   │   └── services/
+│   │   │       └── finance_service.py # Orchestrates analytics workflow
+│   │   │
+│   │   ├── config.py               # Backend configuration
+│   │   └── main.py                 # FastAPI entry point
+│   │
+│   ├── data/
+│   │   └── finance.db              # SQLite database
+│   │
+│   └── models/
+│       ├── mistral-7b-instruct-v0.1.Q4_K_M.gguf  # Local LLM model
+│       ├── tfidf_vectorizer.pkl                  # Vectorizer
+│       ├── ref_vectors.pkl                       # Merchant embeddings
+│       └── ref_labels.pkl                        # Category labels
+│
+├── frontend/
+│   ├── api/
+│   │   └── backend_client.py       # Frontend ↔ Backend communication
+│   │
+│   ├── components/
+│   │   ├── charts.py               # Spending visualizations
+│   │   ├── corrections.py          # Category correction UI
+│   │   ├── insights.py             # Insight rendering
+│   │   └── tables.py               # Transaction tables
+│   │
+│   ├── config.py                   # Frontend configuration
+│   └── dashboard.py                # Streamlit application
+│
 ├── README.md
-├── LICENSE
+├── requirements.txt
 └── .gitignore
+
 ```
 
 ---
@@ -98,7 +149,13 @@ Personal-Finance-Analyzer/
 
 ```bash
 pip install -r requirements.txt
-streamlit run app.py
+cd backend
+uvicorn app.main:app --reload
+```
+-Open New Terminal
+```bash
+cd frontend
+streamlit run dashboard.py
 ```
 
 ---
