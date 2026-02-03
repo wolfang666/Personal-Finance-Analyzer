@@ -152,7 +152,7 @@ pip install -r requirements.txt
 cd backend
 uvicorn app.main:app --reload
 ```
--Open New Terminal
+Open New Terminal
 ```bash
 cd frontend
 streamlit run dashboard.py
