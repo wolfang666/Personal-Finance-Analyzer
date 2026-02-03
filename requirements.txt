@@ -1,0 +1,27 @@
+# Python version
+python>=3.9
+
+# Backend API
+fastapi
+uvicorn[standard]
+
+# Frontend
+streamlit
+
+# HTTP Client
+requests
+
+# Data Processing
+pandas
+numpy
+
+# PDF Parsing (Tables)
+camelot-py[cv]
+
+# Database
+sqllite3
+
+# LLM Integration (Local)
+llama-cpp-python
+
+

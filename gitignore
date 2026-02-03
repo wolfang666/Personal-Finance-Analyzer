@@ -1,0 +1,76 @@
+# =======================
+# Python
+# =======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# =======================
+# Streamlit
+# =======================
+.streamlit/
+.streamlit/secrets.toml
+
+# =======================
+# Jupyter
+# =======================
+.ipynb_checkpoints/
+
+# =======================
+# OS / Editor
+# =======================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =======================
+# Logs & Cache
+# =======================
+*.log
+.cache/
+
+# =======================
+# Database / Local Data
+# =======================
+*.db
+*.sqlite
+*.sqlite3
+
+# =======================
+# Uploaded / Generated Files
+# =======================
+uploads/
+data/
+outputs/
+reports/
+
+# =======================
+# LLM / Model Files
+# =======================
+models/
+*.gguf
+*.bin
+
+# =======================
+# Secrets / Config
+# =======================
+.env
+.env.*
+config.local.py
+
+# =======================
+# PDFs (Sensitive Financial Data)
+# =======================
+*.pdf
