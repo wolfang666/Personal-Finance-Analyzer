@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-user_id = "shuvrajyoti"
+user_id = "OWN USER ID"
 
 
 # ===================== STYLING =====================
