@@ -147,6 +147,7 @@ Personal-Finance-Analyzer/
 
 ## 🛠️ Setup & Installation
 
+Download mistral-7b-instruct-v0.1.Q4_K_M.gguf and place in backend/models
 ```bash
 pip install -r requirements.txt
 cd backend
