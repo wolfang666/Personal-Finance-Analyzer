@@ -58,16 +58,16 @@ def categorize_with_memory(
 ):
     merchant_key = normalize_merchant(merchant_text)
 
-    # 1️⃣ Merchant memory lookup (authoritative)
+    #Merchant memory lookup
     memory = lookup_merchant_memory(conn, user_id, merchant_key)
     if memory:
         category, subcategory, confidence, source = memory
         return category, subcategory, confidence, "merchant_memory"
 
-    # 2️⃣ Cosine similarity fallback (ML)
+    #Cosine similarity fallback
     category, subcategory, confidence = categorize(description_text)
 
-    # 3️⃣ Auto-learn only if confidence is high
+    #Auto-learn only if confidence is high
     if confidence >= threshold:
         store_merchant_memory(
             conn,
