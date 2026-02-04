@@ -30,7 +30,30 @@ def ingest_transactions(
             merchant_text=tx["merchant"],
             description_text=tx["description"],
         )
-
+        cursor.execute("""
+    CREATE TABLE IF NOT EXISTS transactions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT,
+    timestamp DATETIME,
+    merchant TEXT,
+    amount REAL,
+    category TEXT,
+    subcategory TEXT,
+    confidence REAL,
+    source TEXT
+);
+""")
+        cursor.execute("""
+    CREATE TABLE IF NOT EXISTS merchant_memory (
+    user_id TEXT,
+    merchant TEXT,
+    category TEXT,
+    subcategory TEXT,
+    confidence REAL,
+    source TEXT,
+    PRIMARY KEY (user_id, merchant)
+);
+""")
         cursor.execute(
             """
             INSERT OR IGNORE INTO transactions (
